@@ -853,7 +853,7 @@ class TestInstructorAPIBulkAccountCreationAndEnrollment(SharedModuleStoreTestCas
         user.is_active = False
         user.save()
 
-        csv_content = "test_student@example.com,test_student,tester,USA" \
+        csv_content = "test_student@example.com,test_student,tester,USA"
 
         uploaded_file = SimpleUploadedFile("temp.csv", csv_content)
         response = self.client.post(self.url, {'students_list': uploaded_file})

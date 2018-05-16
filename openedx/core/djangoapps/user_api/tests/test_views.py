@@ -800,9 +800,7 @@ class RegistrationViewValidationErrorTest(ThirdPartyAuthTestMixin, UserAPITestCa
         super(RegistrationViewValidationErrorTest, self).setUp()
         self.url = reverse("user_api_registration")
 
-    @mock.patch('openedx.core.djangoapps.user_api.views.check_account_exists')
-    def test_register_duplicate_email_validation_error(self, dummy_check_account_exists):
-        dummy_check_account_exists.return_value = []
+    def test_register_duplicate_email_validation_error(self):
         # Register the first user
         response = self.client.post(self.url, {
             "email": self.EMAIL,
@@ -837,9 +835,7 @@ class RegistrationViewValidationErrorTest(ThirdPartyAuthTestMixin, UserAPITestCa
             }
         )
 
-    @mock.patch('openedx.core.djangoapps.user_api.views.check_account_exists')
-    def test_register_duplicate_username_account_validation_error(self, dummy_check_account_exists):
-        dummy_check_account_exists.return_value = []
+    def test_register_duplicate_username_account_validation_error(self):
         # Register the first user
         response = self.client.post(self.url, {
             "email": self.EMAIL,
@@ -873,9 +869,7 @@ class RegistrationViewValidationErrorTest(ThirdPartyAuthTestMixin, UserAPITestCa
             }
         )
 
-    @mock.patch('openedx.core.djangoapps.user_api.views.check_account_exists')
-    def test_register_duplicate_username_and_email_validation_errors(self, dummy_check_account_exists):
-        dummy_check_account_exists.return_value = []
+    def test_register_duplicate_username_and_email_validation_errors(self):
         # Register the first user
         response = self.client.post(self.url, {
             "email": self.EMAIL,

@@ -11,6 +11,7 @@ from django.utils.translation import ugettext as _
 from opaque_keys.edx.keys import UsageKey
 from six import text_type
 
+from student.models import get_user_by_username_or_email
 from courseware.field_overrides import disable_overrides
 from courseware.models import StudentFieldOverride
 from courseware.student_field_overrides import clear_override_for_user, get_override_for_user, override_field_for_user
@@ -61,14 +62,13 @@ def get_student_from_identifier(unique_student_identifier):
 
     Returns the student object associated with `unique_student_identifier`
 
-    Raises User.DoesNotExist if no user object can be found.
+    Raises User.DoesNotExist if no user object can be found, the user was
+    retired, or the user is in the process of being retired.
+
+    DEPRECATED: use student.models.get_user_by_username_or_email instead.
     """
-    unique_student_identifier = strip_if_string(unique_student_identifier)
-    if "@" in unique_student_identifier:
-        student = User.objects.get(email=unique_student_identifier)
-    else:
-        student = User.objects.get(username=unique_student_identifier)
-    return student
+    # TODO: add deprecation warning
+    return get_user_by_username_or_email(unique_student_identifier)
 
 
 def require_student_from_identifier(unique_student_identifier):
