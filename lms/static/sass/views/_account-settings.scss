@@ -552,7 +552,6 @@
       }
 
       .paragon__modal {
-        overflow-y: scroll;
         color: $dark-gray;
         margin-top: 0.5rem;
 
@@ -581,7 +580,7 @@
           width: 50%;
         }
 
-        .paragon__btn:not(.cancel-btn) {
+        .paragon__btn {
           @extend %btn-primary-blue;
         }
       }
